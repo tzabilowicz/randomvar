@@ -1,2 +1,2 @@
 # randomvar
-Symbolic random variable statistical python package.
+A symbolic library for random variable distributions.
