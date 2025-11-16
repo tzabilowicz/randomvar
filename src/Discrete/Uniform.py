@@ -34,7 +34,7 @@ class Uniform(DiscreteDistribution):
 
     def interval(self):
         """
-        Return the interval of the uniform random variable.
+        Return the discrete interval of the uniform random variable.
 
         Returns
         -------
