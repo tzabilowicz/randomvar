@@ -37,7 +37,7 @@ class Bernoulli(DiscreteDistribution):
         Returns
         -------
         intvl : tuple(int, int)
-            Interval (0, 1) or the Bernoulli distribution.
+            Interval (0, 1) of the Bernoulli distribution.
         """
         intvl = (0, 1)
 

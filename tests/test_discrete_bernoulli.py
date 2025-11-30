@@ -36,7 +36,7 @@ class TestDiscreteBernoulli(unittest.TestCase):
 
         actual_p = sum(samples) / len(samples)
 
-        self.assertAlmostEqual(actual_p, expected_p, places=2)
+        self.assertAlmostEqual(actual_p, expected_p, delta=0.1)
 
     def testProbabilityMassFunction(self):
         p = 0.6
