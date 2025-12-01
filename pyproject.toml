@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "randomvar"
-version = "0.1.0"
+version = "1.0.0"
 description = "A symbolic library for random variable distributions."
 authors = [
     { name = "Trevor Zabilowicz", email = "your@email.com" }
