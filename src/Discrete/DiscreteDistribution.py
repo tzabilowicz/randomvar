@@ -4,13 +4,14 @@ class DiscreteDistribution:
     """ Default Discrete Distribution
 
     Default for convolved discrete distributions.
+    Base class for all discrete distributions.
 
     Parameters
     ----------
     d1 : (Bernoulli, Binomial, DiscreteDistribution, Geometric, Uniform)
-        Discrete distributuion
+        Discrete distributuion 1
     d2 : (Bernoulli, Binomial, DiscreteDistribution, Geometric, Uniform)
-        Discrete distributuion
+        Discrete distributuion 2
 
     Attributes
     ----------
