@@ -7,10 +7,10 @@ from utils.utils import factorial
 class Binomial(DiscreteDistribution):
     """ Binomial Distribution
 
-    Binomial distribution simulates n independent
-    Bernoulli(p) random varaibles.
+    Binomial distribution is the number of successes in
+    N independent Bernoulli events.
     Inherits from DiscreteDistribution for algebraic
-    operators.
+    operations.
     @see DiscreteDistribution for more information.
 
     Parameters
@@ -21,10 +21,10 @@ class Binomial(DiscreteDistribution):
         Probability of a successful outcome.
     """
 
-    def __init__(self, n, p):
+    def __init__(self, n: int, p: float) -> None:
         # Validate probability
         if p < 0 or p > 1:
-            raise ValueError(f'p must exist in [0, 1]')
+            raise ValueError('p must exist in [0, 1]')
 
         # Validate number of trials
         if n < 0:
@@ -33,11 +33,11 @@ class Binomial(DiscreteDistribution):
         self._p = p
         self._n = n
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"D~Binomial({self._n},{self._p})"
     __str__ = __repr__
 
-    def interval(self):
+    def interval(self) -> tuple[int, int]:
         """
         Return the discrete interval of the Binomial distribution.
 
@@ -51,7 +51,7 @@ class Binomial(DiscreteDistribution):
 
         return intvl
 
-    def sample(self):
+    def sample(self) -> int:
         """
         Generate a Binomial event. A Binomial event is a series of
         n independent Bernoulli events. A Binomial event models the
@@ -68,8 +68,40 @@ class Binomial(DiscreteDistribution):
         s = sum([X.sample() for i in range(self._n)])
 
         return s
+    
+    def exp(self) -> float:
+        """
+        exp - Expectation
+        Computes the expectation of the random variable.
+        
+        Returns
+        -------
+        e_x: float
+            Expected value of X.
+            E[X]
+        """
 
-    def pmf(self, x):
+        e_x = self._n * self._p
+        
+        return e_x
+    
+    def var(self) -> float:
+        """
+        var - Variance
+        Computes the variance of the random variable.
+        
+        Returns
+        -------
+        var_x:
+            Variance of X.
+            Var[X]
+        """
+
+        var_x = self._n * self._p * (1 - self._p)
+        
+        return var_x
+
+    def pmf(self, x: int) -> float:
         """
         pmf - Probability Mass Function
         Compute the probability mass at x. If the value of x is not
@@ -95,7 +127,7 @@ class Binomial(DiscreteDistribution):
 
         return p_x
 
-    def cdf(self, x):
+    def cdf(self, x: int) -> float:
         """
         cdf - Cumulative Distribution Function
         Compute the cumulative probability mass up to and including x.
@@ -119,6 +151,6 @@ class Binomial(DiscreteDistribution):
         """
 
         # x+1 to include x
-        F_x = sum([self.pmf(i) for i in range(x+1)])
+        F_x = sum(self.pmf(i) for i in range(x+1))
 
         return F_x

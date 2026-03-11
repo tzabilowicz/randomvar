@@ -9,7 +9,7 @@ class Uniform(DiscreteDistribution):
 
     Discrete uniform distribution on the range [a, b].
     Inherits from DiscreteDistribution for algebraic
-    operators.
+    operations.
     @see DiscreteDistribution for more information.
 
     Parameters
@@ -20,7 +20,7 @@ class Uniform(DiscreteDistribution):
         Inclusive right boundary.
     """
 
-    def __init__(self, a, b):
+    def __init__(self, a: int, b: int) -> None:
         # Validate interval [a, b]
         if b < a:
             raise ValueError(f"[a, b] - Right interval (b={b}) must be greater than left interval (a={a}).")
@@ -28,11 +28,11 @@ class Uniform(DiscreteDistribution):
         self._a = a
         self._b = b
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'D~Uniform({self._a},{self._b})'
     __str__ = __repr__
 
-    def interval(self):
+    def interval(self) -> tuple[int, int]:
         """
         Return the discrete interval of the uniform random variable.
 
@@ -45,7 +45,7 @@ class Uniform(DiscreteDistribution):
 
         return intvl
 
-    def sample(self):
+    def sample(self) -> int:
         """
         Generate a uniform random sample drawn from the interval
         of the distribution, [a, b]. Each value has equal an
@@ -59,8 +59,40 @@ class Uniform(DiscreteDistribution):
         s = random.randint(self._a, self._b)
 
         return s
+    
+    def exp(self) -> float:
+        """
+        exp - Expectation
+        Computes the expectation of the random variable.
+        
+        Returns
+        -------
+        e_x: float
+            Expected value of X.
+            E[X]
+        """
 
-    def pmf(self, x):
+        e_x = (self._a + self._b) / 2
+        
+        return e_x
+    
+    def var(self) -> float:
+        """
+        var - Variance
+        Computes the variance of the random variable.
+        
+        Returns
+        -------
+        var_x:
+            Variance of X.
+            Var[X]
+        """
+
+        var_x = ((self._a - self._b) ** 2) / 12
+        
+        return var_x
+
+    def pmf(self, x: int) -> float:
         """
         pmf - Probability Mass Function P(X = x)
         Compute the probability mass at x. If the value of x is
@@ -85,7 +117,7 @@ class Uniform(DiscreteDistribution):
 
         return p_x
 
-    def cdf(self, x):
+    def cdf(self, x: int) -> float:
         """
         cdf - Cumulative Distribution Function P(X <= x)
         Compute the cumulative probability mass up to and including x.

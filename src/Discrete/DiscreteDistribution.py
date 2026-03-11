@@ -1,7 +1,7 @@
 """ Default Discrete Distribution """
 
 class DiscreteDistribution:
-    """ Default Discrete Distribution
+    """ General Discrete Distribution
 
     Default for convolved discrete distributions.
     Base class for all discrete distributions.
@@ -21,15 +21,15 @@ class DiscreteDistribution:
         Discrete distributuion
     """
 
-    def __init__(self, d1, d2):
+    def __init__(self, d1, d2) -> None:
         self._f = d1
         self._g = d2
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"D~Discrete({self._f},{self._g})"
     __str__ = __repr__
 
-    def __add__(self, other):
+    def __add__(self, other) -> "DiscreteDistribution":
         """
         Add the distributions by creating a convolved
         discrete distribution.
@@ -51,7 +51,7 @@ class DiscreteDistribution:
     def __div__(self, other):
         return NotImplemented
 
-    def interval(self):
+    def interval(self) -> tuple[int, int]:
         """
         Interval for the convolved discrete distribution.
 
@@ -71,7 +71,7 @@ class DiscreteDistribution:
 
         return intvl
 
-    def pmf(self, x):
+    def pmf(self, x: int) -> float:
         """
         pmf - Probability Mass Function P(X = x)
         Default pmf for convolved discrete distribution.
@@ -110,7 +110,7 @@ class DiscreteDistribution:
 
         return p_x
 
-    def cdf(self, x):
+    def cdf(self, x: int) -> float:
         """
         cdf - Cumulative Distribution Function P(X <= x)
         Default cdf for two convolved discrete distributions.
@@ -142,3 +142,5 @@ class DiscreteDistribution:
         else:
             # sum of pmf values on [a, x]
             F_x = sum([self.pmf(i) for i in range(a, x+1)])
+        
+        return F_x

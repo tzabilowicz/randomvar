@@ -10,7 +10,7 @@ class Bernoulli(DiscreteDistribution):
     Bernoulli distribution with probability p of a
     successful event.
     Inherits from DiscreteDistribution for algebraic
-    operators.
+    operations.
     @see DiscreteDistribution for more information.
 
     Parameters
@@ -19,18 +19,18 @@ class Bernoulli(DiscreteDistribution):
         Probability of a successful outcome.
     """
 
-    def __init__(self, p):
+    def __init__(self, p: float) -> None:
         # Validate probability
         if p < 0 or p > 1:
             raise ValueError(f'p must exist in [0, 1]')
 
         self._p = p
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"D~Bernoulli({self._p})"
     __str__ = __repr__
 
-    def interval(self):
+    def interval(self) -> tuple[int, int]:
         """
         Return the discrete interval of the Bernoulli distribution.
 
@@ -43,7 +43,7 @@ class Bernoulli(DiscreteDistribution):
 
         return intvl
 
-    def sample(self):
+    def sample(self) -> int:
         """
         Generate a Bernoulli event. A Bernoulli event either is
         successful (1) or failure (0), goverened by probability p.
@@ -59,7 +59,39 @@ class Bernoulli(DiscreteDistribution):
 
         return s
 
-    def pmf(self, x):
+    def exp(self) -> float:
+        """
+        exp - Expectation
+        Computes the expectation of the random variable.
+        
+        Returns
+        -------
+        e_x: float
+            Expected value of X.
+            E[X]
+        """
+
+        e_x = self._p
+        
+        return e_x
+    
+    def var(self) -> float:
+        """
+        var - Variance
+        Computes the variance of the random variable.
+        
+        Returns
+        -------
+        var_x:
+            Variance of X.
+            Var[X]
+        """
+
+        var_x = self._p * (1 - self._p)
+        
+        return var_x
+
+    def pmf(self, x: int) -> float:
         """
         pmf - Probability Mass Function
         Compute the probability mass at x. If the value of x is not
@@ -84,7 +116,7 @@ class Bernoulli(DiscreteDistribution):
 
         return p_x
 
-    def cdf(self, x):
+    def cdf(self, x: int) -> float:
         """
         cdf - Cumulative Distribution Function
         Compute the cumulative probability mass up to and including x.
