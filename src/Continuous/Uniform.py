@@ -1,27 +1,27 @@
-""" Discrete Uniform Distribution """
+""" Continuous Uniform Distribution """
 
 import random
 
-from Discrete.DiscreteDistribution import DiscreteDistribution
+from Continuous.ContinuousDistribution import ContinuousDistribution
 
-class Uniform(DiscreteDistribution):
-    """ Discrete Uniform Distribution
+class Uniform(ContinuousDistribution):
+    """ Continuous Uniform Distribution
 
-    Discrete uniform distribution on the range [a, b].
-    Inherits from DiscreteDistribution for algebraic
+    Contuinuous uniform distribution on the range [a, b].
+    Inherits from the ContinuousDistribution for algebraic
     operations.
-    @see DiscreteDistribution for more information.
+    @see ContinuousDistribution for more information.
 
     Parameters
     ----------
-    a : int
+    a : float
         Inclusive left boundary.
-    b : int
+    b : float
         Inclusive right boundary.
     """
 
-    def __init__(self, a: int, b: int) -> None:
-        # Validate interval [a, b]
+    def __init__(self, a: float, b: float) -> None:
+        # Validate the interval
         if b < a:
             raise ValueError(f"[a, b] - Right interval (b={b}) must be greater than left interval (a={a}).")
 
@@ -32,31 +32,33 @@ class Uniform(DiscreteDistribution):
         return f'D~Uniform({self._a},{self._b})'
     __str__ = __repr__
 
-    def interval(self) -> tuple[int, int]:
+    def interval(self) -> tuple[float, float]:
         """
-        Return the discrete interval of the uniform random variable.
+        Return the continuous interval of the uniform random variable.
 
         Returns
         -------
-        intvl : tuple(int, int)
+        intvl : tuple[float, float]
             Interval (a, b) of the Uniform distribution.
         """
+
         intvl = (self._a, self._b)
 
         return intvl
 
-    def sample(self) -> int:
+    def sample(self) -> float:
         """
         Generate a uniform random sample from the interval
-        of the distribution on [a, b]. Each value has equal an
-        equal probability of 1/n, where n=(b-a).
+        of the distribution on [a, b]. Each value has an equal
+        probability of 1/n, where n=(b-a).
 
         Returns
         -------
-        s : int
-            Random sample drawn from [a, b],
+        s : float
+            Random sample drawn from [a, b].
         """
-        s = random.randint(self._a, self._b)
+
+        s = random.uniform(self._a, self._b)
 
         return s
 
@@ -92,16 +94,16 @@ class Uniform(DiscreteDistribution):
 
         return var_x
 
-    def pmf(self, x: int) -> float:
+    def pmf(self, x: float) -> float:
         """
         pmf - Probability Mass Function P(X = x)
         Compute the probability mass at x. If the value of x is
-        outside interval [a, b], the probability of event X = x
+        outside the interval [a, b], the probability of event X = x
         is 0.
 
         Parameters
         ----------
-        x : int
+        x : float
             Value of X to compute pmf.
 
         Returns
@@ -118,7 +120,7 @@ class Uniform(DiscreteDistribution):
 
         return p_x
 
-    def cdf(self, x: int) -> float:
+    def cdf(self, x: float) -> float:
         """
         cdf - Cumulative Distribution Function P(X <= x)
         Compute the cumulative probability mass up to and including x.
@@ -133,7 +135,7 @@ class Uniform(DiscreteDistribution):
         -------
         F_x : float
             Probability of the event X <= x.
-            P(X <= x)
+            P( X <= x)
 
         Notes
         -----
