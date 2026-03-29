@@ -94,17 +94,17 @@ class Uniform(ContinuousDistribution):
 
         return var_x
 
-    def pmf(self, x: float) -> float:
+    def pdf(self, x: float) -> float:
         """
-        pmf - Probability Mass Function P(X = x)
-        Compute the probability mass at x. If the value of x is
+        pdf - Probability Density Function P(X = x)
+        Compute the probability density at x. If the value of x is
         outside the interval [a, b], the probability of event X = x
         is 0.
 
         Parameters
         ----------
         x : float
-            Value of X to compute pmf.
+            Value of X to compute pdf.
 
         Returns
         -------
@@ -124,12 +124,12 @@ class Uniform(ContinuousDistribution):
         """
         cdf - Cumulative Distribution Function P(X <= x)
         Compute the cumulative probability mass up to and including x.
-        @see pmf(x) for additional information
+        @see pdf(x) for additional information
 
         Parameters
         ----------
         x : int
-            Value of X to compute pmf.
+            Value of X to compute pdf.
 
         Returns
         -------
@@ -148,7 +148,7 @@ class Uniform(ContinuousDistribution):
         elif x > self._b:
             F_x = 1
         else:
-            # sum of pmf values on [a, x]
-            F_x = sum([self.pmf(i) for i in range(self._a, x+1)])
+            # sum of pdf values on [a, x]
+            F_x = sum([self.pdf(i) for i in range(self._a, x+1)])
 
         return F_x
