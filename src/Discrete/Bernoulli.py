@@ -39,9 +39,8 @@ class Bernoulli(DiscreteDistribution):
         intvl : tuple(int, int)
             Interval (0, 1) of the Bernoulli distribution.
         """
-        intvl = (0, 1)
 
-        return intvl
+        return (0, 1)
 
     def sample(self) -> int:
         """
@@ -63,7 +62,7 @@ class Bernoulli(DiscreteDistribution):
         """
         exp - Expectation
         Computes the expectation of the random variable.
-        
+
         Returns
         -------
         e_x: float
@@ -71,15 +70,13 @@ class Bernoulli(DiscreteDistribution):
             E[X]
         """
 
-        e_x = self._p
-        
-        return e_x
-    
+        return self._p
+
     def var(self) -> float:
         """
         var - Variance
         Computes the variance of the random variable.
-        
+
         Returns
         -------
         var_x:
@@ -87,9 +84,7 @@ class Bernoulli(DiscreteDistribution):
             Var[X]
         """
 
-        var_x = self._p * (1 - self._p)
-        
-        return var_x
+        return self._p * (1 - self._p)
 
     def pmf(self, x: int) -> float:
         """
@@ -110,11 +105,9 @@ class Bernoulli(DiscreteDistribution):
         """
 
         if x != 1 and x != 0:
-            p_x = 0
-        else:
-            p_x = self._p if x == 1 else (1 - self._p)
+            return 0.0
 
-        return p_x
+        return self._p if x == 1 else (1 - self._p)
 
     def cdf(self, x: int) -> float:
         """
@@ -139,11 +132,9 @@ class Bernoulli(DiscreteDistribution):
         up to and including event X = x.
         """
 
-        F_x = 0 # x < 0
-
         if x == 0:
             return 1 - self._p
         elif x >= 1:
-            F_x = 1
+            return 1.0
 
-        return F_x
+        return 0.0 # x < 0

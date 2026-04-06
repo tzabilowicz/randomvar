@@ -41,9 +41,8 @@ class Uniform(DiscreteDistribution):
         intvl : tuple(int, int)
             Interval (a, b) of the Uniform distribution.
         """
-        intvl = (self._a, self._b)
 
-        return intvl
+        return (self._a, self._b)
 
     def sample(self) -> int:
         """
@@ -56,9 +55,8 @@ class Uniform(DiscreteDistribution):
         s : int
             Random sample drawn from [a, b],
         """
-        s = random.randint(self._a, self._b)
 
-        return s
+        return random.randint(self._a, self._b)
 
     def exp(self) -> float:
         """
@@ -72,9 +70,7 @@ class Uniform(DiscreteDistribution):
             E[X]
         """
 
-        e_x = (self._a + self._b) / 2
-
-        return e_x
+        return (self._a + self._b) / 2
 
     def var(self) -> float:
         """
@@ -88,9 +84,7 @@ class Uniform(DiscreteDistribution):
             Var[X]
         """
 
-        var_x = ((self._a - self._b) ** 2) / 12
-
-        return var_x
+        return ((self._a - self._b) ** 2) / 12
 
     def pmf(self, x: int) -> float:
         """
@@ -112,11 +106,9 @@ class Uniform(DiscreteDistribution):
         """
 
         if x < self._a or x > self._b:
-            p_x = 0
-        else:
-            p_x = 1 / abs(self._b - self._a + 1)
+            return 0.0
 
-        return p_x
+        return 1 / abs(self._b - self._a + 1)
 
     def cdf(self, x: int) -> float:
         """
@@ -142,11 +134,8 @@ class Uniform(DiscreteDistribution):
         """
 
         if x < self._a:
-            F_x = 0
+            return 0.0
         elif x > self._b:
-            F_x = 1
-        else:
-            # sum of pmf values on [a, x]
-            F_x = sum([self.pmf(i) for i in range(self._a, x+1)])
+            return 1.0
 
-        return F_x
+        return (x - self._a) / (self._b - self._a)

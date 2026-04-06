@@ -47,9 +47,7 @@ class Binomial(DiscreteDistribution):
             Interval (0, n) of the Binomial distribution.
         """
 
-        intvl = (0, self._n)
-
-        return intvl
+        return (0, self._n)
 
     def sample(self) -> int:
         """
@@ -68,12 +66,12 @@ class Binomial(DiscreteDistribution):
         s = sum([X.sample() for i in range(self._n)])
 
         return s
-    
+
     def exp(self) -> float:
         """
         exp - Expectation
         Computes the expectation of the random variable.
-        
+
         Returns
         -------
         e_x: float
@@ -81,15 +79,13 @@ class Binomial(DiscreteDistribution):
             E[X]
         """
 
-        e_x = self._n * self._p
-        
-        return e_x
-    
+        return self._n * self._p
+
     def var(self) -> float:
         """
         var - Variance
         Computes the variance of the random variable.
-        
+
         Returns
         -------
         var_x:
@@ -97,9 +93,7 @@ class Binomial(DiscreteDistribution):
             Var[X]
         """
 
-        var_x = self._n * self._p * (1 - self._p)
-        
-        return var_x
+        return self._n * self._p * (1 - self._p)
 
     def pmf(self, x: int) -> float:
         """
@@ -151,6 +145,4 @@ class Binomial(DiscreteDistribution):
         """
 
         # x+1 to include x
-        F_x = sum(self.pmf(i) for i in range(x+1))
-
-        return F_x
+        return sum(self.pmf(i) for i in range(x+1))

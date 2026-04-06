@@ -7,7 +7,7 @@ from Continuous.ContinuousDistribution import ContinuousDistribution
 class Uniform(ContinuousDistribution):
     """ Continuous Uniform Distribution
 
-    Contuinuous uniform distribution on the range [a, b].
+    Continuous uniform distribution on the range [a, b].
     Inherits from the ContinuousDistribution for algebraic
     operations.
     @see ContinuousDistribution for more information.
@@ -42,9 +42,7 @@ class Uniform(ContinuousDistribution):
             Interval (a, b) of the Uniform distribution.
         """
 
-        intvl = (self._a, self._b)
-
-        return intvl
+        return (self._a, self._b)
 
     def sample(self) -> float:
         """
@@ -58,9 +56,7 @@ class Uniform(ContinuousDistribution):
             Random sample drawn from [a, b].
         """
 
-        s = random.uniform(self._a, self._b)
-
-        return s
+        return random.uniform(self._a, self._b)
 
     def exp(self) -> float:
         """
@@ -74,9 +70,7 @@ class Uniform(ContinuousDistribution):
             E[X]
         """
 
-        e_x = (self._a + self._b) / 2
-
-        return e_x
+        return (self._a + self._b) / 2
 
     def var(self) -> float:
         """
@@ -90,9 +84,7 @@ class Uniform(ContinuousDistribution):
             Var[X]
         """
 
-        var_x = ((self._a - self._b) ** 2) / 12
-
-        return var_x
+        return ((self._a - self._b) ** 2) / 12
 
     def pdf(self, x: float) -> float:
         """
@@ -114,41 +106,36 @@ class Uniform(ContinuousDistribution):
         """
 
         if x < self._a or x > self._b:
-            p_x = 0
-        else:
-            p_x = 1 / abs(self._b - self._a + 1)
+            return 0.0
 
-        return p_x
+        return 1 / abs(self._b - self._a + 1)
 
     def cdf(self, x: float) -> float:
         """
         cdf - Cumulative Distribution Function P(X <= x)
-        Compute the cumulative probability mass up to and including x.
+        Compute the cumulative probability density up to and including x.
         @see pdf(x) for additional information
 
         Parameters
         ----------
-        x : int
-            Value of X to compute pdf.
+        x : float
+            Value of X to compute cdf.
 
         Returns
         -------
         F_x : float
             Probability of the event X <= x.
-            P( X <= x)
+            P(X <= x)
 
         Notes
         -----
-        The cdf is an accumulation of the probability mass
+        The cdf is an accumulation of the probability density
         up to and including event X = x.
         """
 
         if x < self._a:
-            F_x = 0
+            return 0.0
         elif x > self._b:
-            F_x = 1
-        else:
-            # sum of pdf values on [a, x]
-            F_x = sum([self.pdf(i) for i in range(self._a, x+1)])
+            return 1.0
 
-        return F_x
+        return (x - self._a) / (self._b - self._a)
