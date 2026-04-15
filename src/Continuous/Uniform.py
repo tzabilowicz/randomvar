@@ -22,7 +22,7 @@ class Uniform(ContinuousDistribution):
 
     def __init__(self, a: float, b: float) -> None:
         # Validate the interval
-        if b < a:
+        if b <= a:
             raise ValueError(f"[a, b] - Right interval (b={b}) must be greater than left interval (a={a}).")
 
         self._a = a
@@ -47,8 +47,7 @@ class Uniform(ContinuousDistribution):
     def sample(self) -> float:
         """
         Generate a uniform random sample from the interval
-        of the distribution on [a, b]. Each value has an equal
-        probability of 1/n, where n=(b-a).
+        of the distribution on [a, b].
 
         Returns
         -------
@@ -84,13 +83,13 @@ class Uniform(ContinuousDistribution):
             Var[X]
         """
 
-        return ((self._a - self._b) ** 2) / 12
+        return ((self._b - self._a) ** 2) / 12
 
     def pdf(self, x: float) -> float:
         """
-        pdf - Probability Density Function P(X = x)
-        Compute the probability density at x. If the value of x is
-        outside the interval [a, b], the probability of event X = x
+        pdf - Probability Density Function
+        Compute the probability density. If the value of x is
+        outside the interval [a, b], the probability of the event
         is 0.
 
         Parameters
@@ -108,7 +107,7 @@ class Uniform(ContinuousDistribution):
         if x < self._a or x > self._b:
             return 0.0
 
-        return 1 / abs(self._b - self._a + 1)
+        return 1 / abs(self._b - self._a)
 
     def cdf(self, x: float) -> float:
         """
@@ -135,7 +134,7 @@ class Uniform(ContinuousDistribution):
 
         if x < self._a:
             return 0.0
-        elif x > self._b:
+        elif x >= self._b:
             return 1.0
 
         return (x - self._a) / (self._b - self._a)

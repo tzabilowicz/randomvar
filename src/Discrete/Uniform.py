@@ -48,7 +48,7 @@ class Uniform(DiscreteDistribution):
         """
         Generate a uniform random sample from the interval
         of the distribution on [a, b]. Each value has equal an
-        equal probability of 1/n, where n=(b-a).
+        equal probability of 1/n, where n=(b-a+1).
 
         Returns
         -------
@@ -84,7 +84,7 @@ class Uniform(DiscreteDistribution):
             Var[X]
         """
 
-        return ((self._a - self._b) ** 2) / 12
+        return ((self._b - self._a + 1) ** 2) / 12
 
     def pmf(self, x: int) -> float:
         """
@@ -135,7 +135,7 @@ class Uniform(DiscreteDistribution):
 
         if x < self._a:
             return 0.0
-        elif x > self._b:
+        elif x >= self._b:
             return 1.0
 
-        return (x - self._a) / (self._b - self._a)
+        return (x - self._a + 1) / (self._b - self._a + 1)

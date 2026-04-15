@@ -84,7 +84,7 @@ class Exponential(ContinuousDistribution):
 
     def pdf(self, x: float) -> float:
         """
-        pdf - Probability Density Function P(X = x)
+        pdf - Probability Density Function
         Compute the probability density at x.
 
         Parameters
