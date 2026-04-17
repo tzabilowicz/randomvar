@@ -13,6 +13,7 @@ Z_2 = X - Y
 Z_3 = X * Y
 Z_4 = X / Y
 
+# Print the distribution's expectation and variance
 print(f"E[Z_1] | Var[Z_1]: {Z_1.exp():.2f} | {Z_1.var():.2f}")
 print(f"E[Z_2] | Var[Z_2]: {Z_2.exp():.2f} | {Z_2.var():.2f}")
 print(f"E[Z_3] | Var[Z_3]: {Z_3.exp():.2f} | {Z_3.var():.2f}")
