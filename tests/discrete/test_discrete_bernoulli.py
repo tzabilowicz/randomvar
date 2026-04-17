@@ -1,5 +1,5 @@
 import unittest
-from Discrete.Bernoulli import Bernoulli
+from distributions.discrete.Bernoulli import Bernoulli
 
 class TestDiscreteBernoulli(unittest.TestCase):
     def testBernoulliRepresentation(self):

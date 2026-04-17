@@ -1,5 +1,5 @@
 import unittest
-from Discrete.Geometric import Geometric
+from distributions.discrete.Geometric import Geometric
 
 class TestDiscreteGeometric(unittest.TestCase):
     def testGeometricRepresentation(self):

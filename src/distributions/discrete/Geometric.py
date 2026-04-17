@@ -1,7 +1,7 @@
 """Discrete Geometric Distribution"""
 
-from Discrete.Bernoulli import Bernoulli
-from Discrete.DiscreteDistribution import DiscreteDistribution
+from distributions.discrete.Bernoulli import Bernoulli
+from distributions.discrete.DiscreteDistribution import DiscreteDistribution
 
 class Geometric(DiscreteDistribution):
     """ Discrete Geometric Distribution

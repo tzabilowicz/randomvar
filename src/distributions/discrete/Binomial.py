@@ -1,60 +1,69 @@
-""" Bernoulli Distribution """
+""" Binomial Distribution """
 
-import random
+from distributions.discrete.Bernoulli import Bernoulli
+from distributions.discrete.DiscreteDistribution import DiscreteDistribution
+from utils.utils import factorial
 
-from Discrete.DiscreteDistribution import DiscreteDistribution
+class Binomial(DiscreteDistribution):
+    """ Binomial Distribution
 
-class Bernoulli(DiscreteDistribution):
-    """ Bernoulli Distribution
-
-    Bernoulli distribution with probability p of a
-    successful event.
+    Binomial distribution is the number of successes in
+    N independent Bernoulli events.
     Inherits from DiscreteDistribution for algebraic
     operations.
     @see DiscreteDistribution for more information.
 
     Parameters
     ----------
+    n : int
+        Number of independent Bernoulli random variables.
     p : float, [0, 1]
         Probability of a successful outcome.
     """
 
-    def __init__(self, p: float) -> None:
+    def __init__(self, n: int, p: float) -> None:
         # Validate probability
         if p < 0 or p > 1:
-            raise ValueError(f'p must exist in [0, 1]')
+            raise ValueError('p must exist in [0, 1]')
+
+        # Validate number of trials
+        if n < 0:
+            raise ValueError(f'Must have a positive number of trials')
 
         self._p = p
+        self._n = n
 
     def __repr__(self) -> str:
-        return f"D~Bernoulli({self._p})"
+        return f"D~Binomial({self._n},{self._p})"
     __str__ = __repr__
 
     def interval(self) -> tuple[int, int]:
         """
-        Return the discrete interval of the Bernoulli distribution.
+        Return the discrete interval of the Binomial distribution.
 
         Returns
         -------
         intvl : tuple(int, int)
-            Interval (0, 1) of the Bernoulli distribution.
+            Interval (0, n) of the Binomial distribution.
         """
 
-        return (0, 1)
+        return (0, self._n)
 
     def sample(self) -> int:
         """
-        Generate a Bernoulli event. A Bernoulli event either is
-        successful (1) or failure (0), goverened by probability p.
+        Generate a Binomial event. A Binomial event is a series of
+        n independent Bernoulli events. A Binomial event models the
+        number of successes in n independent Bernoulli events.
 
         Returns
         -------
         s : int
-            Random sample drawn from [0, 1].
+            Random sample modeling the number of successes in n
+            independent Bernoulli events.
         """
 
-        p_s = random.random()
-        s = 1 if p_s < self._p else 0
+        X = Bernoulli(self._p)
+        s = sum([X.sample() for i in range(self._n)])
 
         return s
 
@@ -70,7 +79,7 @@ class Bernoulli(DiscreteDistribution):
             E[X]
         """
 
-        return self._p
+        return self._n * self._p
 
     def var(self) -> float:
         """
@@ -84,7 +93,7 @@ class Bernoulli(DiscreteDistribution):
             Var[X]
         """
 
-        return self._p * (1 - self._p)
+        return self._n * self._p * (1 - self._p)
 
     def pmf(self, x: int) -> float:
         """
@@ -104,10 +113,13 @@ class Bernoulli(DiscreteDistribution):
             P(X = x)
         """
 
-        if x != 1 and x != 0:
-            return 0.0
+        if x < 0 or x > self._n:
+            p_x = 0
+        else:
+            nCx = factorial(self._n) / (factorial(x) * factorial(self._n - x))
+            p_x = nCx * (self._p ** x) * ((1 - self._p) ** (self._n - x))
 
-        return self._p if x == 1 else (1 - self._p)
+        return p_x
 
     def cdf(self, x: int) -> float:
         """
@@ -132,9 +144,5 @@ class Bernoulli(DiscreteDistribution):
         up to and including event X = x.
         """
 
-        if x == 0:
-            return 1 - self._p
-        elif x >= 1:
-            return 1.0
-
-        return 0.0 # x < 0
+        # x+1 to include x
+        return sum(self.pmf(i) for i in range(x+1))

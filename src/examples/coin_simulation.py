@@ -5,8 +5,8 @@ a series of coin flips. It shows how RandomVar can be
 used with Monte Carlo simulations.
 """
 
-from Discrete.Bernoulli import Bernoulli
-from Discrete.Binomial import Binomial
+from distributions.discrete.Bernoulli import Bernoulli
+from distributions.discrete.Binomial import Binomial
 
 # Single coin flip
 # ========================

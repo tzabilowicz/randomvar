@@ -1,5 +1,5 @@
 import unittest
-from Continuous.Uniform import Uniform
+from distributions.continuous.Uniform import Uniform
 
 class TestContinuousUniform(unittest.TestCase):
     def testUniformRepresentation(self):

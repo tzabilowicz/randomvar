@@ -1,5 +1,5 @@
 import unittest
-from Discrete.Binomial import Binomial
+from distributions.discrete.Binomial import Binomial
 
 class TestDiscreteBinomial(unittest.TestCase):
     def testBinomialRepresentation(self):

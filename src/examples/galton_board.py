@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 plt.style.use('ggplot')
 
-from Discrete.Bernoulli import Bernoulli
+from distributions.discrete.Bernoulli import Bernoulli
 
 ROWS  = 25
 BALLS = 10_000

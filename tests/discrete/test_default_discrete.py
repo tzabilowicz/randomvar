@@ -1,11 +1,11 @@
 import unittest
-from Discrete.DiscreteDistribution import DiscreteDistribution
+from distributions.discrete.DiscreteDistribution import DiscreteDistribution
 
 # Convolution testing
 #from Discrete.Bernoulli import Bernoulli
 #from Discrete.Binomial import Binomial
 #from Discrete.Geometric import Geometric
-from Discrete.Uniform import Uniform
+from distributions.discrete.Uniform import Uniform
 
 
 class TestDefaultDiscrete(unittest.TestCase):

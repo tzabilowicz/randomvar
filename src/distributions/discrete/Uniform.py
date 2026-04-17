@@ -2,7 +2,7 @@
 
 import random
 
-from Discrete.DiscreteDistribution import DiscreteDistribution
+from distributions.discrete.DiscreteDistribution import DiscreteDistribution
 
 class Uniform(DiscreteDistribution):
     """ Discrete Uniform Distribution

@@ -1,5 +1,5 @@
 import unittest
-from Discrete.Uniform import Uniform
+from distributions.discrete.Uniform import Uniform
 
 class TestDiscreteUniform(unittest.TestCase):
     def testUniformRepresentation(self):

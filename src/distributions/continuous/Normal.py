@@ -3,7 +3,7 @@
 import math
 import random
 
-from Continuous.ContinuousDistribution import ContinuousDistribution
+from distributions.continuous.ContinuousDistribution import ContinuousDistribution
 
 class Normal(ContinuousDistribution):
     """ Normal Distribution

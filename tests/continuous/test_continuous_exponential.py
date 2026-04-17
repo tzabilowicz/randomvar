@@ -1,5 +1,5 @@
 import unittest
-from Continuous.Exponential import Exponential
+from distributions.continuous.Exponential import Exponential
 
 class TestContinuousExponential(unittest.TestCase):
     def testExponentialRepresentation(self):

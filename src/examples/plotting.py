@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-from Discrete.Geometric import Geometric
+from distributions.discrete.Geometric import Geometric
 
 X = Geometric(0.25)
 

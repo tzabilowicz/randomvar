@@ -7,8 +7,8 @@ a discrete and continuous random variable.
 import matplotlib.pyplot as plt
 plt.style.use("seaborn-v0_8")
 
-from Discrete.Geometric import Geometric
-from Continuous.Uniform import Uniform
+from distributions.discrete.Geometric import Geometric
+from distributions.continuous.Uniform import Uniform
 
 # Example 1 (Discrete)
 X = Geometric(p=0.6)
