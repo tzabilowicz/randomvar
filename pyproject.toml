@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "randomvar"
 version = "1.0.0"
-description = "A symbolic library for random variables."
+description = "Symbolic random variables and statistics in Python."
 authors = [
     { name = "Trevor Zabilowicz", email = "your@email.com" }
 ]

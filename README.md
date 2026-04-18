@@ -1,10 +1,10 @@
-![RandomVar Logo](docs/logo.png)
+![RandomVar Logo](media/logo.png)
 
-### RandomVar: A Symbolic Library for Random Variables
+### RandomVar: Symbolic random variables and statistics in Python
 
 ---
 ### Overview
-***randomvar*** is a Python package that provides a comprehensive, symbolic, library for discrete and continuous random variables. The objective is to provide a robust set of statistical tools that are easy to use and well documented.
+***randomvar*** is a Python package that provides a comprehensive library for discrete and continuous random variables and statistical tools to generate insights from data. The objective is to provide a robust set of statistical tools that are easy to use and well documented.
 
 NOTE: This is a work in progress. New features will be added. Once the package is fully complete, it will be published to *pip*.
 
@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ### Running Tests
 There is a unit test suite. To run:
 ```
-cd randomvar
+cd /path/to/randomvar
 pytest
 ```
 
@@ -27,9 +27,3 @@ There are some examples using the random variables in `/src/examples`. These can
 cd randomvar/src
 py -m examples.coin_simulation
 ```
-
-### Future Milestones/Features
-- Complete DiscreteDistribution expectation and variance
-- Finish continuous distribution library
-- Add comprehensive LaTex style documentation
-- Expand distribution library
