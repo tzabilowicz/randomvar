@@ -1,12 +1,15 @@
+""" Permutation Testing """
+
 import numpy as np
-from typing import Callable, Sequence
+from typing import Callable, Optional, Sequence
 
 def permutation_test(
-    s1: Sequence,
-    s2: Sequence, 
+    sample1: Sequence,
+    sample2: Sequence, 
     T: Callable[[Sequence, Sequence], float],
-    N: int = 10_000,
-    two_sided: bool = True
+    N: int = 1_000,
+    two_sided: bool = True,
+    rng: Optional[np.random.Generator] = None
 ):
     """
     Conduct a permutation test for sample data and a 
@@ -14,14 +17,14 @@ def permutation_test(
     
     Parameters
     ----------
-    s1 : Sequence
+    sample1 : Sequence
         Sample data 1.
-    s2 : Sequence
+    sample2 : Sequence
         Sample data 2.
-    T : function(s1, s2)
-        Function defining the test statistic.
-    N : int (default = 10,000)
-        Number of random resamples.
+    T : function(sample1, sample2)
+        Function computing the test statistic.
+    N : int (default = 1,000)
+        Number simulations.
     two_sided : bool (default = True)
         True if two sided test; false for one-sided.
     
@@ -33,16 +36,22 @@ def permutation_test(
         Observed test statistic, p-val
     """
     
-    pool = np.concatenate((s1, s2))
+    if len(sample1) < 1 or len(sample2) < 1:
+        raise ValueError("Must have at least one value in sample1 and sample2.")
     
-    T_obs = T(s1, s2)
+    if rng is None:
+        rng = np.random.default_rng()
+    
+    pool = np.concatenate((sample1, sample2))
+    
+    T_obs = T(sample1, sample2)
     T_perm = np.zeros(N)
     
     # Generate the permutation distribution
     for n in range(N):
-        perm = np.random.permutation(pool)
-        t_sample1 = perm[:len(s1)]
-        t_sample2 = perm[len(s1):]
+        perm = rng.permutation(pool)
+        t_sample1 = perm[:len(sample1)]
+        t_sample2 = perm[len(sample1):]
         
         # Compute the permutated test statistic
         T_perm[n] = T(t_sample1, t_sample2)

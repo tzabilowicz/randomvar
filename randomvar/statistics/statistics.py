@@ -1,8 +1,123 @@
-""" Pre-defined randomvar test statistics. """
+""" One and Two Sample Statistics"""
 
 import numpy as np
 from typing import Sequence
 
+# One sample statistics
+def mean(s: Sequence) -> float:
+    """ 
+    Sample mean. 
+    
+    Parameters
+    ----------
+    s : Sequence
+        Sample data.
+        
+    Returns
+    -------
+    sample_mean : float
+    """
+    
+    return np.mean(s)
+
+def variance(s: Sequence) -> float:
+    """
+    Sample variance.
+    
+    Parameters
+    ----------
+    s : Sequence
+        Sample data.
+        
+    Returns
+    -------
+    sample_variance : float
+    """
+    
+    return np.var(s)
+
+def standard_deviation(s: Sequence) -> float:
+    """
+    Sample standard deviation.
+    
+    Parameters
+    ----------
+    s : Sequence
+        Sample data.
+        
+    Returns
+    -------
+    sample_sd : float
+    """
+    
+    return np.std(s)
+
+def median(s: Sequence) -> float:
+    """ 
+    Sample median.
+    
+    Parameters
+    ----------
+    s : Sequence
+        Sample data.
+        
+    Returns
+    -------
+    sample_median : float
+    """
+    
+    return np.median(s)
+
+def skew(s: Sequence) -> float:
+    """ 
+    Sample skew.
+    
+    Parameters
+    ----------
+    s : Sequence
+        Sample data.
+    
+    Returns
+    -------
+    sample_skew : float
+    """
+    
+    x = np.asarray(s)
+    mu = np.mean(x)
+    sigma = np.std(x)
+
+    if sigma == 0:
+        return 0.0
+
+    return np.mean((x - mu) ** 3) / (sigma ** 3)
+
+def kurtosis(s: Sequence) -> float:
+    """
+    Sample kurtosis.
+    
+    Parameters
+    ----------
+    s : Sequence
+        Sample data.
+    
+    Returns
+    -------
+    sample_kurtosis : float
+    """
+    
+    x = np.asarray(s)
+    mu = np.mean(x)
+    sigma = np.std(x)
+
+    if sigma == 0:
+        return 0.0
+
+    k = np.mean((x - mu) ** 4) / (sigma ** 4)
+
+    # Excess kurtosiss
+    return k - 3
+
+# Two sample statistics
 def mean_difference(s1: Sequence, s2: Sequence) -> float:
     """
     Mean difference test statistic.

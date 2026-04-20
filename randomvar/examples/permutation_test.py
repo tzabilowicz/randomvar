@@ -1,5 +1,5 @@
-from permutation.permutation import permutation_test
-from permutation.test_statistics import mean_difference
+from statistics.permutation import permutation_test
+from statistics.statistics import mean_difference
 
 observed_1 = [30, 28, 25, 24, 22, 20, 27, 26, 23, 21]
 observed_2 = [18, 19, 21, 20, 17, 16, 22, 23, 19, 18]
