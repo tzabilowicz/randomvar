@@ -18,13 +18,13 @@ class Geometric(DiscreteDistribution):
         Probability of a successful outcome.
     """
 
-    def __init__(self, p):
+    def __init__(self, p: float) -> None:
         if p < 0 or p > 1:
             raise ValueError("p must exist in [0, 1]")
 
         self._p = p
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"D~Geometric({self._p})"
     __str__ = __repr__
 
@@ -40,7 +40,7 @@ class Geometric(DiscreteDistribution):
 
         return (1, float('inf'))
 
-    def sample(self):
+    def sample(self) -> int:
         """
         Generate a Geometric event. A Geometric event is the number of
         failures in a series of Bernoulli trials until the first
@@ -88,7 +88,7 @@ class Geometric(DiscreteDistribution):
 
         Returns
         -------
-        var_x:
+        var_x: float
             Variance of X.
             Var[X]
         """
